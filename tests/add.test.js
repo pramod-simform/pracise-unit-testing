@@ -106,30 +106,36 @@ describe("add module test suite", () => {
   });
 
   // Codium
-  it("should handle boolean inputs that can be converted to numbers", () => {
+  it("should throw an error if one or both arguments are boolean", () => {
     // arrange
     const num1 = true;
     const num2 = false;
-    const expected = 1;
+    const errorMessage = "Please provide valid numbers!";
 
     // act
-    const result = add(num1, num2);
+    function callAddFunction() {
+      add(num1, num2);
+    }
 
     // assert
-    expect(result).toBe(expected);
+    expect(callAddFunction).toThrow();
+    expect(callAddFunction).toThrowError(errorMessage);
   });
 
-  it("should return valid addition result even with the one of string number", () => {
+  it("should throw an error if one or both arguments are string", () => {
     //arrange
     const num1 = "2";
     const num2 = 2;
-    const expected = 4;
+    const errorMessage = "Please provide valid numbers!";
 
-    //act
-    const act = add(num1, num2);
+    // act
+    function callAddFunction() {
+      add(num1, num2);
+    }
 
-    //assert
-    expect(act).toBe(expected);
+    // assert
+    expect(callAddFunction).toThrow();
+    expect(callAddFunction).toThrowError(errorMessage);
   });
 
   it("should return invalid addition result for invalid result", () => {
@@ -165,7 +171,7 @@ describe("add module test suite", () => {
     //arrange
     const num1 = 9999999999999999;
     const num2 = 1;
-    const errorMessage = "Can not proceed with too large number!";
+    const errorMessage = "Can not proceed with number outside safe range!";
 
     //act
     function callAddFunction() {
@@ -181,7 +187,7 @@ describe("add module test suite", () => {
     //arrange
     const num1 = -9999999999999999;
     const num2 = 1;
-    const errorMessage = "Can not proceed with too small number!";
+    const errorMessage = "Can not proceed with number outside safe range!";
 
     //act
     function callAddFunction() {
