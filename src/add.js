@@ -9,7 +9,7 @@ function add(a, b) {
 }
 
 function validateInput(a, b) {
-  if (!a || !b) {
+  if (typeof a !== "number" || typeof b !== "number") {
     throw new Error("Please provide valid numbers!");
   }
 }
@@ -31,3 +31,5 @@ function checkNumberRange(num) {
 function performAddition(a, b) {
   return a + b;
 }
+
+module.exports = add;
