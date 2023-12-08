@@ -1,24 +1,33 @@
 // add.js
 function add(a, b) {
-  if (!a || !b) {
-    throw new Error("Please provide both numbers!");
-  }
-
-  const result = +a + +b;
-
-  if (isNaN(result)) {
-    throw new Error("Please provide valid numbers!");
-  }
-
-  if (a > Number.MAX_SAFE_INTEGER || b > Number.MAX_SAFE_INTEGER) {
-    throw new Error("Can not proceed with too large number!");
-  }
-
-  if (a < Number.MIN_SAFE_INTEGER || b < Number.MIN_SAFE_INTEGER) {
-    throw new Error("Can not proceed with too small number!");
-  }
-  
-  return result;
+  validateInput(a, b);
+  const convertedA = convertToNumber(a);
+  const convertedB = convertToNumber(b);
+  checkNumberRange(convertedA);
+  checkNumberRange(convertedB);
+  return performAddition(convertedA, convertedB);
 }
 
-module.exports = add;
+function validateInput(a, b) {
+  if (!a || !b) {
+    throw new Error("Please provide valid numbers!");
+  }
+}
+
+function convertToNumber(num) {
+  const convertedNum = +num;
+  if (isNaN(convertedNum)) {
+    throw new Error("Please provide valid numbers!");
+  }
+  return convertedNum;
+}
+
+function checkNumberRange(num) {
+  if (num > Number.MAX_SAFE_INTEGER || num < Number.MIN_SAFE_INTEGER) {
+    throw new Error("Can not proceed with number outside safe range!");
+  }
+}
+
+function performAddition(a, b) {
+  return a + b;
+}
