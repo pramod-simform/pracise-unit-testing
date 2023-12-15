@@ -1,10 +1,11 @@
 const baseDir = "<rootDir>/src";
-const baseTestDir = "<rootDir>/src/test";
+const baseTestDir = "<rootDir>/tests";
 const config = {
   testEnvironment: "node",
   verbose: true,
   collectCoverage: true,
   collectCoverageFrom: [`${baseDir}/**/*.js`],
   testMatch: [`${baseTestDir}/**/*.js`],
+  detectOpenHandles: true,
 };
-module.export = config;
+module.exports = config;
